@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html ng-app="Demo">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <script src="Scripts/script.js"></script>
+    <base href="/">
+    
+   
+  
+</head>
+<body>
+<table border="1" align="center">
+    <tr>
+        <td class="header">
+            <a href="Home">Home</a>  
+            <a href="Add">Add</a>  
+            <a href="Edit">Edit</a>  
+            <a href="Delete">Delete</a>  
+        </td>
+    </tr>
+    <tr class="maincontent">
+        <td>
+           <ng-view></ng-view>
+        </td>
+    </tr>
+    <tr class="footer">
+        <td>
+            copyright
+        </td>
+    </tr>
+</table>
+</body>
+</html>

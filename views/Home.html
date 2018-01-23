@@ -1,0 +1,74 @@
+﻿<h1>Customers</h1>
+
+<div>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>
+                    CustomerId
+                </th>
+                <th>
+                    CustomerName
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    City
+                </th>
+                <th colspan="2">
+                    Modify
+                </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr ng-repeat="c in Customer">
+                <td>
+                    <div ng-hide="hiderows">{{ c.CustomerId }}</div>
+                    <div ng-show="hiderows">
+                        <input type="text" />
+                    </div>
+                </td>
+                <td>
+                    <div ng-hide="hiderows">{{ c.CustomerName }}</div>
+                    <div ng-show="hiderows">
+                        <input type="text" />
+                    </div>
+
+                </td>
+                <td>
+                    <div ng-hide="hiderows">{{ c.Phone }}</div>
+                    <div ng-show="hiderows">
+                        <input type="text" />
+                    </div>
+
+                </td>
+                <td>
+                    <div ng-hide="hiderows">{{ c.City }}</div>
+                    <div ng-show="hiderows">
+                        <input type="text" />
+                    </div>
+
+                </td>
+                <td>
+                    <button ng-model="hiderows">Edit</button>
+                </td>
+                <td>
+                    <button ng-click="deletecus(c)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" align="center">
+                    <button ng-click="addcus(current)">Add new Customer</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
