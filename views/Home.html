@@ -1,74 +1,117 @@
-﻿<h1>Customers</h1>
-
-<div>
-    <table border="1" align="center">
-        <thead>
-            <tr>
-                <th>
-                    CustomerId
-                </th>
-                <th>
-                    CustomerName
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                    City
-                </th>
-                <th colspan="2">
-                    Modify
-                </th>
-            </tr>
-
-        </thead>
-        <tbody>
-            <tr ng-repeat="c in Customer">
-                <td>
-                    <div ng-hide="hiderows">{{ c.CustomerId }}</div>
-                    <div ng-show="hiderows">
-                        <input type="text" />
-                    </div>
-                </td>
-                <td>
-                    <div ng-hide="hiderows">{{ c.CustomerName }}</div>
-                    <div ng-show="hiderows">
-                        <input type="text" />
-                    </div>
-
-                </td>
-                <td>
-                    <div ng-hide="hiderows">{{ c.Phone }}</div>
-                    <div ng-show="hiderows">
-                        <input type="text" />
-                    </div>
-
-                </td>
-                <td>
-                    <div ng-hide="hiderows">{{ c.City }}</div>
-                    <div ng-show="hiderows">
-                        <input type="text" />
-                    </div>
-
-                </td>
-                <td>
-                    <button ng-model="hiderows">Edit</button>
-                </td>
-                <td>
-                    <button ng-click="deletecus(c)">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6" align="center">
-                    <button ng-click="addcus(current)">Add new Customer</button>
-                </td>
-
-            </tr>
-        </tbody>
-    </table>
+﻿
+<link href="bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="Scripts/jquery-1.9.0.min.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>
 
 
+<div class="container">
+    <h1>Customers</h1>
+
+    <div id="home">
+        <table align="center" class="table table-hover table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        CustomerId
+                    </th>
+                    <th>
+                        CustomerName
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th colspan="2">
+                        Modify
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in Customer" ng-include="gettemplate(c)"></tr>
+            </tbody>
+        </table>
+        <script type="text/ng-template" id="hometemp">
+            <td>
+                {{ c.CustomerId }}
+            </td>
+            <td>
+                {{ c.CustomerName }}
+            </td>
+            <td>
+                {{ c.Phone }}
+            </td>
+            <td>
+                {{ c.City }}
+            </td>
+            <td>
+                <input type="button" ng-click="editcus(c)" value="Edit" class="btn-primary" />
+            </td>
+            <td>
+                <input type="button" ng-click="deletecus(c)" value="Delete" class="btn-danger" />
+            </td>
+        </script>
+        <script type="text/ng-template" id="edittemp">
+            <td>
+                <input type="text" value="{{ c.CustomerId }}" ng-model="selected.CustomerId" />
+            </td>
+            <td>
+                <input type="text" value="{{ c.CustomerName }}" ng-model="selected.CustomerName" />
+            </td>
+            <td>
+                <input type="text" value="{{ c.Phone }}" ng-model="selected.Phone" />
+            </td>
+            <td>
+                <input type="text" value="{{ c.City }}" ng-model="selected.City" />
+            </td>
+            <td>
+                <input type="button" value="Save" class="btn-success" ng-click="savecustdetails($index)" />
+            </td>
+            <td>
+                <input type="button" value="Cancel" class="btn-danger" ng-click="reset()" />
+            </td>
+        </script>
+
+        <input type="checkbox" ng-model="showingdiv" />Add new Customer
+    </div>
+    <div ng-if="showingdiv">
+        <table align="center" class="table table-hover table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        CustomerId
+                    </th>
+                    <th>
+                        CustomerName
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        City
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" ng-model="selected.CustomerId" />
+                    </td>
+                    <td>
+                        <input type="text" ng-model="selected.CustomerName" />
+                    </td>
+                    <td>
+                        <input type="text" ng-model="selected.CustomerPhone" />
+                    </td>
+                    <td>
+                        <input type="text" ng-model="selected.City" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <center><input type="button" ng-click="addcust($index)" value="Add Customer" class="btn-success" /></center>
+    </div>
 </div>
 
